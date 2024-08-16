@@ -1,12 +1,12 @@
+import PropTypes from "prop-types";
+
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, setMoviesPerPage } from "../redux/moviesReducer";
 
-const Pagination = () => {
+const Pagination = ({ totalPages }) => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.currentPage);
   const moviesPerPage = useSelector((state) => state.moviesPerPage);
-  const totalMovies = useSelector((state) => state.movies.length);
-  const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -29,7 +29,7 @@ const Pagination = () => {
       <button onClick={handlePrevious} disabled={currentPage === 1}>
         Previous
       </button>
-      <span>Page {currentPage}/{totalPages}</span>
+      <span>Page {currentPage} of {totalPages}</span>
       <button onClick={handleNext} disabled={currentPage === totalPages}>
         Next
       </button>
@@ -41,5 +41,9 @@ const Pagination = () => {
     </div>
   );
 };
+
+Pagination.propTypes = {
+    totalPages: PropTypes.number.isRequired,
+  };
 
 export default Pagination;

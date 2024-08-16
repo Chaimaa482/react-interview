@@ -3,7 +3,7 @@ const initialState = {
   categories: [],
   selectedCategories: [],
   currentPage: 1,
-  moviesPerPage: 4,
+  moviesPerPage: 8,
 };
 
 const movieReducer = (state = initialState, action) => {

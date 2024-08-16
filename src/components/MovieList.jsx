@@ -28,16 +28,19 @@ const MovieList = () => {
     }
   };
 
+  // Filtrer les films en fonction des catégories sélectionnées
   const filteredMovies = selectedCategories.length
     ? movies.filter((movie) => selectedCategories.includes(movie.category))
     : movies;
 
+  // Pagination sur les films filtrés
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = filteredMovies.slice(
     indexOfFirstMovie,
     indexOfLastMovie
   );
+  const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
 
   return (
     <>
@@ -55,7 +58,7 @@ const MovieList = () => {
           />
         ))}
       </div>
-      <Pagination />
+      <Pagination totalPages={totalPages} />
     </>
   );
 };

@@ -4,6 +4,8 @@ const initialState = {
   selectedCategories: [],
   currentPage: 1,
   moviesPerPage: 8,
+  loading: false, // New loading state
+  error: null, // New error state
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -12,7 +14,7 @@ const movieReducer = (state = initialState, action) => {
       const categories = [
         ...new Set(action.payload.map((movie) => movie.category)),
       ];
-      return { ...state, movies: action.payload, categories };
+      return { ...state, movies: action.payload, categories, loading: false, error: null };
     }
     case "REMOVE_MOVIE": {
       const remainingMovies = state.movies.filter(
@@ -27,6 +29,10 @@ const movieReducer = (state = initialState, action) => {
         categories: remainingCategories,
       };
     }
+    case "SET_LOADING":
+      return { ...state, loading: true, error: null }; // Set loading state
+    case "SET_ERROR":
+      return { ...state, loading: false, error: action.payload }; // Set error state
     case "TOGGLE_LIKE":
       return {
         ...state,
@@ -73,6 +79,15 @@ const movieReducer = (state = initialState, action) => {
 export const setMovies = (movies) => ({
   type: "SET_MOVIES",
   payload: movies,
+});
+
+export const setLoading = () => ({
+  type: "SET_LOADING",
+});
+
+export const setError = (error) => ({
+  type: "SET_ERROR",
+  payload: error,
 });
 
 export const removeMovie = (id) => ({

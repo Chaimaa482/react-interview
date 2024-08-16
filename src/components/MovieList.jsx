@@ -3,20 +3,26 @@ import { useSelector, useDispatch } from "react-redux";
 import MovieCard from "./MovieCard";
 import CategoryFilter from "./CategoryFilter";
 import Pagination from "./Pagination";
-import { setMovies, removeMovie } from "../redux/moviesReducer";
+import { setMovies, setLoading, setError, removeMovie } from "../redux/moviesReducer";
 import { movies$ } from "../data/movies";
 
 const MovieList = () => {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movies);
-  const selectedCategories = useSelector((state) => state.selectedCategories);
-  const currentPage = useSelector((state) => state.currentPage);
-  const moviesPerPage = useSelector((state) => state.moviesPerPage);
+  const { movies, loading, error, selectedCategories, currentPage, moviesPerPage } = useSelector((state) => state);
 
   useEffect(() => {
-    movies$.then((movies) => {
-      dispatch(setMovies(movies));
-    });
+    const fetchMovies = async () => {
+      dispatch(setLoading()); 
+      try {
+        const movies = await movies$;
+        dispatch(setMovies(movies));
+      } catch (error) {
+        dispatch(setError("Failed to fetch movies")); 
+        console.error("Failed to fetch movies:", error);
+      }
+    };
+
+    fetchMovies();
   }, [dispatch]);
 
   const handleDelete = (id) => {
@@ -28,12 +34,10 @@ const MovieList = () => {
     }
   };
 
-  // Filtrer les films en fonction des catégories sélectionnées
   const filteredMovies = selectedCategories.length
     ? movies.filter((movie) => selectedCategories.includes(movie.category))
     : movies;
 
-  // Pagination sur les films filtrés
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = filteredMovies.slice(
@@ -41,6 +45,14 @@ const MovieList = () => {
     indexOfLastMovie
   );
   const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
+
+  if (loading) {
+    return <p>Loading movies...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <>

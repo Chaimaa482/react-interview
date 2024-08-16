@@ -2,14 +2,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDislike, toggleLike } from "../redux/moviesReducer";
 
-const MovieCard = ({
-  id,
-  title,
-  category,
-  likes,
-  dislikes,
-  onDelete,
-}) => {
+const MovieCard = ({ id, title, category, likes, dislikes, onDelete }) => {
   const dispatch = useDispatch();
   const movie = useSelector((state) =>
     state.movies.find((movie) => movie.id === id)
@@ -28,10 +21,16 @@ const MovieCard = ({
       <h3>{title}</h3>
       <p>{category}</p>
       <div className="btn-container">
-        <button onClick={handleLike} className={`${movie.hasLiked ? 'colored': ''}`}>
+        <button
+          onClick={handleLike}
+          className={`${movie.hasLiked ? "colored" : ""}`}
+        >
           <span className="material-symbols-rounded">thumb_up</span> {likes}
         </button>
-        <button onClick={handleDislike} className={`${movie.hasDisliked ? 'colored': ''}`}>
+        <button
+          onClick={handleDislike}
+          className={`${movie.hasDisliked ? "colored" : ""}`}
+        >
           <span className="material-symbols-rounded">thumb_down</span>{" "}
           {dislikes}
         </button>

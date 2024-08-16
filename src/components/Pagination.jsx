@@ -29,7 +29,9 @@ const Pagination = ({ totalPages }) => {
       <button onClick={handlePrevious} disabled={currentPage === 1}>
         Previous
       </button>
-      <span>Page {currentPage} of {totalPages}</span>
+      <span>
+        Page {currentPage}/{totalPages}
+      </span>
       <button onClick={handleNext} disabled={currentPage === totalPages}>
         Next
       </button>
@@ -43,7 +45,7 @@ const Pagination = ({ totalPages }) => {
 };
 
 Pagination.propTypes = {
-    totalPages: PropTypes.number.isRequired,
-  };
+  totalPages: PropTypes.number.isRequired,
+};
 
 export default Pagination;

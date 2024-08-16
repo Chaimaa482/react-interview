@@ -1,0 +1,141 @@
+#root {
+  align-self: start;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.movie-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.movie-container{
+  display: flex;
+  direction: column;
+}
+.movie-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 25rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .movie-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-card {
+    width: 100%;
+  }
+}
+
+.movie-card h3 {
+  font-weight: bold;
+}
+
+.like-dislike-bar {
+  display: flex;
+  height: 20px;
+  margin-top: 10px;
+}
+
+
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.colored {
+  color: #646cff;
+}
+
+.category-filter {
+  margin-bottom: 30px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.category-filter label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+.category-filter input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #646cff; 
+}
+
+.category-filter input[type="checkbox"]:checked {
+  accent-color: #646cff; 
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button:disabled {
+  border: transparent;
+  cursor: not-allowed;
+}
+
+.pagination select {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+}
+

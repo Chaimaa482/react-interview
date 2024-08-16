@@ -132,3 +132,51 @@
   border: #1a1a1a;
   gap: 0.5em;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #242424;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: left;
+  width: 360px;
+  font-weight: 500;
+}
+
+.modal-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.btn-confirm {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: gray;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

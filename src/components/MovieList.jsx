@@ -26,12 +26,8 @@ const MovieList = () => {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    const isConfirmed = window.confirm(
-      "Are you sure you want to delete this movie?"
-    );
-    if (isConfirmed) {
       dispatch(removeMovie(id));
-    }
+    
   };
 
   const filteredMovies = selectedCategories.length
